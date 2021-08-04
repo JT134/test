@@ -1,0 +1,24 @@
+var ship1 , ship2;
+function preload(){
+shipImg = loadAnimation ("ship-1.png","ship-2.png","ship-3.png","ship-4.png");
+seaImg = loadImage("sea.png");
+
+}
+
+function setup(){
+createCanvas(1800,1800);
+ 
+ //create a ship sprite
+shipImg1 = createSprite (900,450,5,5);
+shipImg1.addAnimation("ship1",shipImg);
+
+
+}
+
+function draw() {
+  background("sea.png");
+
+  
+
+ drawSprites();
+}
