@@ -12,11 +12,11 @@ gameoverImg = loadImage("game over.png");
 }
 
 function setup() {
-createCanvas(windowWidth,windowHeight);
+createCanvas(windowWidth,windowHeight);// correcting the values by removing windows
 
-missile = createSprite(900,900,70,30);
-missile.addImage("missile",missileImg);
-missile.scale = 0.1;
+//missile = createSprite(500,650,70,30);//remove
+//missile.addImage("missile",missileImg);//remove
+//missile.scale = 0.1;//remove
 
 spacecraft = createSprite(900,900,70,35);
 spacecraft.addImage("spacecraft",spacecraftImg);
@@ -29,28 +29,38 @@ alienshipGroup = new Group();
 
 function draw() {
     background(0);
-   textSize(30);text("score"+ score,180,50);
+   textSize(30);
+   text("score"+ score,180,50);
     
 
 if(gameState === "play") {
-  if(keyDown("left_arrow")){
-    spacecraft.x = spacecraft.x -15;}
+  // call alienship function
+      spawnalienship();
+  if(keyDown("left_arrow"))
+  {
+     spacecraft.x = spacecraft.x -15;
+  }
     if(keyDown("right_arrow"))
-    { spacecraft.x = spacecraft.x + 15;}
+  { 
+    spacecraft.x = spacecraft.x + 15;
+  }
     if(keyDown("down_arrow"))
-    { spacecraft.y = spacecraft.y +3 }
+    { 
+      spacecraft.y = spacecraft.y +3 
+    }
     
 
-   // call alienship function
-      spawnalienship();
+   
 
 
   if (keyDown("space")) {
-    createmissile();
+   createmissile();
   }
 
+
   if(missileGroup.isTouching(alienshipGroup)) {
-    alienship.destroyEach();
+    alienshipGroup.destroyEach();
+    // gamestate="END";
     score = score+50;
   }
 
@@ -61,25 +71,32 @@ if(gameState === "play") {
   }
 
   if (keyDown("space")) {
-    missile.velocityX = 0;
-    missile.velocityY = -6;
+    //missile.velocityX = 0;
+    //missile.velocityY = -6;
   }
 }
+
+else{//added
+  console.log("game End"); //added
+
+
+}//added
   drawSprites();
 }
   
 
   function spawnalienship(){
-    if (frameCount % 500 === 0){
+    if (frameCount % 50 === 0){//corrected the divisor
       var alienship = createSprite (50,200);
-      var test = Math.round(random(windowWidth,windowHeight));
-      console.log(test);
-      alienship.x = Math.round(random(windowWidth,windowHeight))
+      //var test = Math.round(random(600,1200));
+      //console.log(test);
+      alienship.x = Math.round(random(600,1200));
       alienship.addImage(alienshipImg);
       alienship.velocityY = 5;
-      alienship.lifetime = 900;
-      alienship.scale = 0.6;
+      alienship.lifetime = 300;
+      alienship.scale = 0.6;//correcting
       alienshipGroup.add(alienship);
+      alienship.debug=true
       }
 }
 
@@ -90,7 +107,11 @@ if(gameState === "play") {
     missile.addImage(missileImg);
     missile.x = spacecraft.x;
     missile.y = spacecraft.y;
-    missile.velocityY = -6;
-    missile.lifetime = 900;
+    missile.velocityY = -7;
+    missile.lifetime = 300;
     missile.scale = 0.1;
+    missileGroup.add(missile);
+    missile.debug=true
   }
+
+  
