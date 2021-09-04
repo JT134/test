@@ -1,0 +1,81 @@
+const Engine = Matter.Engine;
+const World = Matter.World;
+const Bodies = Matter.Bodies;
+const Body = Matter.Body;
+var btn1;
+
+let engine;
+let world;
+
+var ground1;
+var ground2;
+var ground3;
+var ground4;
+var ground5;
+var ball;
+
+
+function preload()
+{
+	
+}
+
+function setup() {
+	createCanvas(1200, 700);
+	engine = Engine.create();
+
+	world = engine.world;
+    
+    var ground_options={
+		isStatic:true
+	}
+	
+	var ball_options={
+		isStatic:true
+	}
+
+	//Create the Bodies Here.
+    
+	ground1 = Bodies.rectangle(0,690,2500,60,ground_options);
+	World.add(world,ground1);
+
+	ground2 = Bodies.rectangle(0,10,2500,60,ground_options);
+	World.add(world,ground2);
+
+	ground3 = Bodies.rectangle(10,10,60,2500,ground_options);
+	World.add(world,ground3);
+
+	ground4 = Bodies.rectangle(1200,10,60,2500,ground_options);
+	World.add(world,ground4);
+
+	ground5 = Bodies.rectangle(1000,535,60,750,ball_options);
+	World.add(world,ground5);
+
+	ball = Bodies.circle(100,600,60,ball_options);
+	World.add(world,ball);
+
+	Engine.run(engine);
+  
+}
+
+
+function draw() {
+  rectMode(CENTER);
+  background(0);
+  rect(ground1.position.x,ground1.position.y,2500,60);
+  rect(ground2.position.x,ground2.position.y,2500,60);
+  rect(ground3.position.x,ground3.position.y,80,2500);
+  rect(ground4.position.x,ground4.position.y,80,2500);
+  rect(ground5.position.x,ground5.position.y,20,750);
+
+  ellipse(ball.position.x,ball.position.y,60,60);
+
+
+  Engine.update(engine);
+  drawSprites();
+ 
+
+}
+
+
+
