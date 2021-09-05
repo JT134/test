@@ -43,6 +43,13 @@ function setup() {
 	// creating the body of ball
     ball = Bodies.circle(320,230,10,ball_options);
     World.add(world,ball);
+	rope1 = Matter.Constraint.create({
+	  pointA:{x:400,y:100},
+	  bodyB:ball,
+	  PointB:{x:0,y:0},
+	  length:50,
+	  stiffness:0.1
+	})
 	
 	var ball1_options={
 		restituion: 0.95
@@ -50,6 +57,13 @@ function setup() {
     // creating body of ball1
 	ball1 = Bodies.circle(360,230,10,ball1_options);
 	World.add(world,ball);
+	rope2 = Matter.Constraint.create({
+		pointA:{x:400,y:100},
+		bodyB:ball,
+		PointB:{x:0,y:0},
+		length:50,
+		stiffness:0.1
+	  })
 	
 
 	var ball2_options={
@@ -58,6 +72,13 @@ function setup() {
 	// creating body of ball2
 	ball2 = Bodies.circle(480,230,10,ball2_options);
 	World.add(world,ball);
+	rope3 = Matter.Constraint.create({
+		pointA:{x:400,y:100},
+		bodyB:ball,
+		PointB:{x:0,y:0},
+		length:50,
+		stiffness:0.1
+	  })
 
 	var ball3_options={
 		restituion: 0.95
@@ -65,6 +86,13 @@ function setup() {
 	// creating body of ball3
 	ball3 = Bodies.circle(440,230,10,ball3_options);
 	World.add(world,ball);
+	rope4 = Matter.Constraint.create({
+		pointA:{x:400,y:100},
+		bodyB:ball,
+		PointB:{x:0,y:0},
+		length:50,
+		stiffness:0.1
+	  })
 	
 	var ball4_options={
 		restituion: 0.95
@@ -72,6 +100,13 @@ function setup() {
 	// creating body of ball4
 	ball4 = Bodies.circle(400,230,10,ball4_options);
 	World.add(world,ball);
+	rope5 = Matter.Constraint.create({
+		pointA:{x:400,y:100},
+		bodyB:ball,
+		PointB:{x:0,y:0},
+		length:100,
+		stiffness:0.1
+	})
 
 	// creating new ropes
 	rope1=new rope(ball1,roof,-80,0);
@@ -93,19 +128,26 @@ function setup() {
 function draw() {
   rectMode(CENTER);
   background("#99004d");
-  strokeWeight(2);
-  stroke(25);
-  //line(x1,y1,x2,y2,x3,y3,x4,y4,x5,y5);
-
+  
   rect(roof.position.x,roof.position.y,230,20);
   circle(ball.position.x,ball.position.y,20,20);
   circle(ball1.position.x,ball1.position.y,20,20);
   circle(ball2.position.x,ball2.position.y,20,20);
   circle(ball3.position.x,ball3.position.y,20,20);
   circle(ball4.position.x,ball4.position.y,20,20);
+  push();
+  strokeWeight(2);
+  stroke(25);
 
+  //line(x1,y1,x2,y2,x3,y3,x4,y4,x5,y5);
+  line(rope1.pointA.x,rope1.y,ball.position.x,ball.position.y);
+  line(rope2.pointA.x,rope2.y,ball.position.x,ball.position.y);
+  line(rope3.pointA.x,rope4.y,ball.position.x,ball.position.y);
+  line(rope4.pointA.x,rope4.y,ball.position.x,ball.position.y);
+  line(rope5.pointA.x,rope5.y,ball.position.x,ball.position.y);
+  pop();
   //call display() to show ropes here
-  display()
+ 
   
   //create ellipse shape for multiple bobs here
 

@@ -15,7 +15,7 @@ class rope{
 		pointA:{x:400,y:20},
 		bodyB:ball,
 		pointB:{x:0,y:0},
-		length:50,
+		length:100,
 		stiffness:0.1
 	  })
 	  World.add(world,rope1);
@@ -25,8 +25,20 @@ class rope{
     //create display() here 
 	display()
 {
-     var pointA=this.rope.bodyA.position;
-	 var pointB=this.rope.bodyB.position;
+     var pointA=this.rope1.bodyA.position;
+	 var pointB=this.rope1.bodyB.position;
+
+	 var pointA=this.rope2.bodyA.position;
+	 var PointB=this.rope2.bodyB.position;
+
+	 var pointA=this.rope3.bodyA.position;
+	 var PointB=this.rope3.bodyB.position;
+
+	 var pointA=this.rope4.bodyA.position;
+	 var PointB=this.rope4.bodyB.position;
+
+	 var pointA=this.rope5.bodyA.position;
+	 var PointB=this.rope5.bodyB.position;
 
 	 strokeWeight(2);
  
